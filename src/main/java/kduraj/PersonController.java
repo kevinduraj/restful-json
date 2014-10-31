@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import kduraj.component.IPersonService;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMethod;
 /*------------------------------------------------------------------------------------------------
  http://localhost:8084/data/person?id=15
  */
@@ -25,8 +27,8 @@ public class PersonController {
                     defaultValue = "0") Integer id
     ) {
 
-        Person p = personService.getPersonDetail(id);
-        return p;
+        Person person = personService.getPersonDetail(id);
+        return person;
     }
     /*--------------------------------------------------------------------------------------------*/
     @RequestMapping("/info")
@@ -36,8 +38,34 @@ public class PersonController {
                     defaultValue = "0") Integer id
     ) {
 
-        Person p = personService.getPersonInfo(id);
-        return p;
+        Person person = personService.getPersonInfo(id);
+        return person;
     }
-    /*--------------------------------------------------------------------------------------------*/
+    /*--------------------------------------------------------------------------------------------
+    http://localhost:8084/data/list/15
+    */
+    @RequestMapping(value = "/list/{id}"
+		    , method = RequestMethod.GET
+		    , headers = "Accept=application/json")
+    
+    public Person retrieveBook(@PathVariable int id)  {  
+	
+        Person person = personService.getPersonInfo(id);
+        return person;
+	
+    }
+    /*--------------------------------------------------------------------------------------------
+    http://localhost:8084/data/test/kevin/15
+    */
+    @RequestMapping(value = "/test/{title}/{id}"
+		    , method = RequestMethod.GET
+		    , headers = "Accept=application/json")
+    
+    public Person getTitle(@PathVariable String title, @PathVariable int id)  {  
+	
+        Person person = personService.getPersonInfo(id);
+        return person;
+	
+    }    
+    /*--------------------------------------------------------------------------------------------*/ 
 }
