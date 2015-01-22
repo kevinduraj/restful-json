@@ -1,5 +1,5 @@
-Resfull JSON Web Service
-=========================
+Resful JSON Web Service
+========================
 
 * mvn clean install
 * mvn tomcat:deploy 
