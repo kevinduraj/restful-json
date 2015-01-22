@@ -6,6 +6,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 <groupId>kduraj</groupId>
 <artifactId>restful-json</artifactId>
 <version>0.0.1</version>
+<name>restful-json</name>
 <packaging>war</packaging>
 
 <parent>
@@ -27,5 +28,24 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
         </dependency>
         
     </dependencies>
-    <name>restful-json</name>
+
+    <build>
+        <finalName>rest</finalName>
+
+       <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>tomcat-maven-plugin</artifactId>
+                <configuration>
+                    <url>http://localhost:8080/manager/text</url>
+                    <path>/rest</path>
+                    <username>admin</username>
+                    <password>admin</password>
+                </configuration>
+            </plugin>
+    
+     </plugins>
+
+    </build>
+ 
 </project>
